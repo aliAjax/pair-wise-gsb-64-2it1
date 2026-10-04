@@ -57,3 +57,26 @@ dt { color: #778481; } dd { margin: 0; text-align: right; max-width: 220px; }
 .deviation-list button.active { border-color: #1d5755; box-shadow: inset 3px 0 #1d5755; }.deviation-list button > div, .deviation-list footer { display: flex; justify-content: space-between; align-items: center; }
 .deviation-list strong { font-size: 14px; }.deviation-list span, .deviation-list small, .deviation-list footer span { color: #788683; font-size: 11px; }
 .reset-button { position: fixed; right: 20px; bottom: 14px; }
+.conclusion-card { margin: 4px 0 6px; padding: 11px 12px; border-left: 3px solid #8a9491; background: #f4f7f5; font-size: 12px; }
+.conclusion-card > div { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.conclusion-card small { color: #7d8987; font-size: 10px; }
+.conclusion-card ul { margin: 8px 0 0; padding-left: 18px; color: #4c5a57; line-height: 1.6; }
+.conclusion-card.outcome-符合放行 { border-left-color: #0f7b3d; background: #eef7f0; }
+.conclusion-card.outcome-待确认, .conclusion-card.outcome-待补录 { border-left-color: #c89c30; background: #fbf5e5; }
+.conclusion-card.outcome-偏差冻结, .conclusion-card.outcome-不符合 { border-left-color: #d75048; background: #fff3f1; }
+.limit-text { display: block; color: #93a19d; font-size: 10px; }
+.monitoring-entry { margin-top: 14px; border-top: 1px dashed #d5dedb; padding-top: 12px; }
+.monitoring-entry h3 { display: flex; align-items: center; gap: 8px; }
+.entry-grid { display: grid; grid-template-columns: 1.4fr 1fr 0.8fr; gap: 8px; }
+.entry-grid > :nth-child(4), .entry-grid > :nth-child(5) { grid-column: span 1; }
+.hint-text { color: #726b54; background: #fbf5e5; padding: 8px 10px; font-size: 11px; line-height: 1.5; }
+.sign-panel { margin-top: 14px; border-top: 1px dashed #d5dedb; padding-top: 12px; }
+.sign-panel h3 { margin: 0 0 10px; }
+.sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.conflict-banner { margin-top: 14px; padding: 11px 12px; background: #fff3f1; border-left: 3px solid #d75048; font-size: 12px; display: grid; gap: 6px; }
+.conflict-banner span { color: #7a4441; line-height: 1.5; }
+.persist-banner { margin: 14px 28px 0; padding: 11px 14px; background: #fff3f1; border-left: 3px solid #d75048; color: #7a2d29; font-size: 12px; }
+.confirm-pending { color: #8a6a12; background: #fbf5e5; border-left: 3px solid #c89c30; padding: 9px; font-size: 11px; line-height: 1.5; }
+.confirm-ok { color: #1d5c33; background: #eef7f0; border-left: 3px solid #0f7b3d; padding: 9px; font-size: 11px; line-height: 1.5; }
+.version-panel { margin-top: 14px; }
+.version-panel h3 { margin: 0 0 10px; font-size: 13px; }

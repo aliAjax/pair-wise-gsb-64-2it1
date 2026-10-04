@@ -23,10 +23,15 @@ export function DeviationWorkbench() {
       <div className="toolbar"><Dropdown value={status} selectedOptions={[status]} onOptionSelect={(_, data) => setStatus(data.optionValue as typeof status)}>{['全部', '待调查', '调查中', '待复核', '已关闭'].map((item) => <Option key={item} value={item}>{item}</Option>)}</Dropdown><span>调查完成前批次保持隔离，复核签字后才能恢复放行流程。</span></div>
       <div className="split-layout">
         <div className="deviation-list">{rows.map((item) => <button key={item.id} className={item.id === selected?.id ? 'active' : ''} onClick={() => { setSelectedId(item.id); setInvestigation(null) }}>
-          <div><Badge color={item.severity === '重大' ? 'danger' : 'warning'}>{item.severity}</Badge><small>{item.id}</small></div><strong>{item.title}</strong><span>{item.batchId} · {item.owner}</span><footer><Badge appearance="tint">{item.status}</Badge><span>{item.dueDate} 截止</span></footer>
+          <div><Badge color={item.severity === '重大' ? 'danger' : 'warning'}>{item.severity}</Badge><small>{item.id}</small></div><strong>{item.title}</strong><span>{item.batchId} · {item.owner}</span><footer><Badge appearance="tint">{item.status}</Badge>{item.status === '已关闭' && <Badge appearance="outline" color={item.confirmedAt ? 'success' : 'warning'}>{item.confirmedAt ? '已确认' : '待确认'}</Badge>}<span>{item.dueDate} 截止</span></footer>
         </button>)}</div>
         {selected && <div className="record-panel">
           <div className="record-title"><div><span>{selected.id} · V{selected.version}</span><h2>{selected.title}</h2></div><Badge color={selected.severity === '重大' ? 'danger' : 'warning'}>{selected.status}</Badge></div>
+          {selected.status === '已关闭' && <p className={selected.confirmedAt ? 'confirm-ok' : 'confirm-pending'}>
+            {selected.confirmedAt
+              ? `已由同一控制点后续合格读数确认（${selected.confirmedAt.slice(0, 16).replace('T', ' ')}）`
+              : '已关闭，待同一控制点后续合格读数确认，确认前批次放行保持冻结'}
+          </p>}
           <Field label="原因判断"><Textarea value={activeInvestigation?.cause ?? ''} onChange={(_, data) => setInvestigation({ ...(activeInvestigation ?? selected.investigation), cause: data.value })} /></Field>
           <Field label="证据摘要"><Textarea value={activeInvestigation?.evidence ?? ''} onChange={(_, data) => setInvestigation({ ...(activeInvestigation ?? selected.investigation), evidence: data.value })} /></Field>
           <Field label="处置分支"><Dropdown value={activeInvestigation?.decision} selectedOptions={[activeInvestigation?.decision ?? '返工']} onOptionSelect={(_, data) => setInvestigation({ ...(activeInvestigation ?? selected.investigation), decision: data.optionValue as DecisionType })}>{['返工', '报废', '让步接收'].map((item) => <Option key={item} value={item} text={item}>{item}</Option>)}</Dropdown></Field>
